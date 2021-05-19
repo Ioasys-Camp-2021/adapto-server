@@ -9,7 +9,7 @@ module.exports = {
         email: 'admin@ioasys.com',
         password:
           '$2y$08$YWAoZlYAGuPzcl5hqAu.w.BZ.TYsxjNLBz6uuqJxrYEqinfSsBaEG ',
-        user_type: 'none',
+        user_type: 'admin',
         is_admin: true,
         created_at: new Date(),
         updated_at: new Date(),

@@ -7,11 +7,17 @@ User.init(
   {
     firstName: {
       type: DataTypes.STRING,
-      field: 'first_name'
+      field: 'first_name',
+      set (value) {
+        this.setDataValue('firstName', value.replace(/\b\w/g, l => l.toUpperCase()))
+      }
     },
     lastName: {
       type: DataTypes.STRING,
-      field: 'last_name'
+      field: 'last_name',
+      set (value) {
+        this.setDataValue('lastName', value.replace(/\b\w/g, l => l.toUpperCase()))
+      }
     },
     fullName: {
       type: DataTypes.VIRTUAL,
@@ -23,7 +29,8 @@ User.init(
     password: DataTypes.STRING,
     userType: {
       type: DataTypes.STRING,
-      field: 'user_type'
+      field: 'user_type',
+      equals: 'admin' || 'company' || 'refugee'
     },
     isAdmin: {
       type: DataTypes.STRING,
