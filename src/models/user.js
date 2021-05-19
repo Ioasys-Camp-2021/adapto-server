@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
 const config = require('../config/database/sequelize')
+const { encryptor } = require('../utils')
 
 class User extends Model {}
 User.init(
@@ -11,6 +12,12 @@ User.init(
     lastName: {
       type: DataTypes.STRING,
       field: 'last_name'
+    },
+    fullName: {
+      type: DataTypes.VIRTUAL,
+      get () {
+        return `${this.firstName} ${this.lastName}`
+      }
     },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -30,5 +37,20 @@ User.init(
     paranoid: true
   }
 )
+
+User.beforeSave(async (user, options) => {
+  const password = await encryptor.hashPassword(user.password)
+  if (user.changed('password')) {
+    Object.assign(user, { password })
+  }
+  return user
+})
+
+User.prototype.toJSON = function () {
+  const user = { ...this.get() }
+  return Object.fromEntries(
+    Object.entries(user).filter(([key]) => !['password'].includes(key))
+  )
+}
 
 module.exports = User
