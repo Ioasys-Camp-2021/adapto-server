@@ -6,9 +6,9 @@ module.exports = {
       {
         first_name: 'Adminisitrador',
         last_name: 'Adapto',
-        email: 'admin@ioasys.com',
+        email: 'admin@adapto.com',
         password:
-          '$2y$08$YWAoZlYAGuPzcl5hqAu.w.BZ.TYsxjNLBz6uuqJxrYEqinfSsBaEG ',
+          '$2y$08$EEDkHQR4jJiCprUHUZXlHeuK3h5Hb27Lcufd5kbev/tnrjxCBZNUm',
         user_type: 'admin',
         is_admin: true,
         created_at: new Date(),
