@@ -4,6 +4,8 @@ module.exports.messages = {
   invalidFields: 'invalid-fields',
   invalidPassword: 'invalid-password',
   emailUnavailable: 'email-unavailable',
+  invalidAuthFormat: 'invalid-authorization-format',
+  authMissing: 'missing-authorization-header',
   accessUnauthorized: 'access-unauthorized',
   internalError: 'internal-server-error'
 }

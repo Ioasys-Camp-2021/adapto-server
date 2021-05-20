@@ -11,6 +11,7 @@ module.exports = {
           '$2y$08$EEDkHQR4jJiCprUHUZXlHeuK3h5Hb27Lcufd5kbev/tnrjxCBZNUm',
         user_type: 'admin',
         is_admin: true,
+        token: null,
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: null
