@@ -1,0 +1,9 @@
+1. Se tudo estiver ok deve repassar o usuario, os dados da sessão pelo token...
+
+2. Deve dar erro caso o header esteja:
+    2.1 Vazio
+    2.2 Com o auth em formato invalido
+
+3. Deve dar o erro caso o token: 
+    3.1 Não exista no banco de dados
+    3.2 Não possua as credenciais corretas 

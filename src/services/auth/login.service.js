@@ -41,6 +41,9 @@ module.exports.login = async (body) => {
   const sign = promisify(jwt.sign)
   const token = await sign(payload, process.env.JWT_TOKEN)
 
+  user.setDataValue('token', token)
+  await usersRepository.update(user)
+
   return {
     email: user.email,
     token

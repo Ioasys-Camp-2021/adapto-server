@@ -35,7 +35,8 @@ User.init(
     isAdmin: {
       type: DataTypes.STRING,
       field: 'is_admin'
-    }
+    },
+    token: DataTypes.STRING
   },
   {
     sequelize: new Sequelize(config),
