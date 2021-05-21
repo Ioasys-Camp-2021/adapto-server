@@ -43,7 +43,7 @@ module.exports = {
       facebook: {
         type: Sequelize.STRING
       },
-      instragram: {
+      instagram: {
         type: Sequelize.STRING
       },
       created_at: {
@@ -55,7 +55,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       deleted_at: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     })

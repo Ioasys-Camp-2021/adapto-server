@@ -3,7 +3,7 @@ const { StatusCodes } = require('http-status-codes')
 const { usersRepository } = require('../../repositories')
 const { messages } = require('../../utils')
 
-module.exports.create = async (body, role) => {
+module.exports.createUser = async (body, role) => {
   const schema = yup.object().shape({
     firstName: yup.string().required(),
     lastName: yup.string().required(),

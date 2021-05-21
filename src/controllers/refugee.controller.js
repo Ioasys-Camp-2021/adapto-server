@@ -1,10 +1,10 @@
 const { StatusCodes } = require('http-status-codes')
-const { userService } = require('../services')
+const { refugeeService } = require('../services')
 
 module.exports = {
-  createTest: async (req, res) => {
+  create: async (req, res) => {
     try {
-      const response = await userService.createUser(req.body, 3)
+      const response = await refugeeService.create(req.body)
       return res.status(StatusCodes.CREATED).json(response)
     } catch (error) {
       console.error(error)
