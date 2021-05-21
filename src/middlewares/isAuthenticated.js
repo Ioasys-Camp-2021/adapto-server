@@ -39,8 +39,7 @@ module.exports = async (req, res, next) => {
       token,
       id: decoded.id,
       email: decoded.email,
-      userType: decoded.userType,
-      isAdmin: decoded.isAdmin
+      roleId: decoded.roleId
     }
 
     req.user = user

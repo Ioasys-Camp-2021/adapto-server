@@ -5,6 +5,10 @@ const { encryptor } = require('../utils')
 class User extends Model {}
 User.init(
   {
+    roleId: {
+      type: DataTypes.INTEGER,
+      field: 'role_id'
+    },
     firstName: {
       type: DataTypes.STRING,
       field: 'first_name',
@@ -27,15 +31,6 @@ User.init(
     },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    userType: {
-      type: DataTypes.STRING,
-      field: 'user_type',
-      equals: 'admin' || 'company' || 'refugee'
-    },
-    isAdmin: {
-      type: DataTypes.STRING,
-      field: 'is_admin'
-    },
     token: DataTypes.STRING
   },
   {
