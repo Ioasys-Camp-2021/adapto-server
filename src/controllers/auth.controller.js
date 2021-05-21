@@ -11,7 +11,7 @@ module.exports = {
       return res
         .status(
           error.name === 'ValidationError'
-            ? StatusCodes.BAD_REQUEST
+            ? StatusCodes.UNPROCESSABLE_ENTITY
             : error.status || StatusCodes.INTERNAL_SERVER_ERROR
         )
         .json(error.message)
@@ -24,11 +24,7 @@ module.exports = {
     } catch (error) {
       console.error(error)
       return res
-        .status(
-          error.name === 'ValidationError'
-            ? StatusCodes.BAD_REQUEST
-            : error.status || StatusCodes.INTERNAL_SERVER_ERROR
-        )
+        .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message)
     }
   }
