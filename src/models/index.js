@@ -1,6 +1,17 @@
 const Sequelize = require('sequelize')
 const config = require('../config/database/sequelize')
 const User = require('./user')
+const Role = require('./role')
+const BrazilState = require('./brazilstates')
+const Refugee = require('./refugee')
+
+Role.hasMany(User)
+User.hasOne(Role)
+
+BrazilState.hasMany(Refugee)
+
+Refugee.hasOne(BrazilState)
+Refugee.belongsTo(User)
 
 const sequelize = new Sequelize(
   config.database,
@@ -11,5 +22,8 @@ const sequelize = new Sequelize(
 
 module.exports = {
   sequelize,
-  User
+  User,
+  Role,
+  BrazilState,
+  Refugee
 }

@@ -1,42 +1,49 @@
 'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('refugees', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      role_id: {
+      user_id: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'roles',
+          model: 'users',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      first_name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      last_name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      email: {
-        allowNull: false,
-        unique: true,
-        type: Sequelize.STRING
-      },
-      password: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      token: {
+      brazil_state_id: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: true,
+        references: {
+          model: 'brazil_states',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      bio: {
+        type: Sequelize.STRING
+      },
+      phone: {
+        type: Sequelize.STRING(11)
+      },
+      website: {
+        type: Sequelize.STRING
+      },
+      linkedin: {
+        type: Sequelize.STRING
+      },
+      facebook: {
+        type: Sequelize.STRING
+      },
+      instragram: {
         type: Sequelize.STRING
       },
       created_at: {
@@ -48,12 +55,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       deleted_at: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.DATE
       }
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users')
+    await queryInterface.dropTable('refugees')
   }
 }
