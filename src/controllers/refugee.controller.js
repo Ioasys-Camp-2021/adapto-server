@@ -46,7 +46,7 @@ module.exports = {
   },
   update: async (req, res) => {
     try {
-      const response = await refugeeService.update(req.body)
+      const response = await refugeeService.update(req.params.id, req.body)
       return res.status(StatusCodes.OK).json(response)
     } catch (error) {
       console.error(error)
