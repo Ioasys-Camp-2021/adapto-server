@@ -1,9 +1,10 @@
 const { StatusCodes } = require('http-status-codes')
+const { refugeeService } = require('../services')
 
 module.exports = {
   create: async (req, res) => {
     try {
-      const response = 'Criando usuario do tipo refugiado'
+      const response = await refugeeService.create(req.body)
       return res.status(StatusCodes.CREATED).json(response)
     } catch (error) {
       console.error(error)

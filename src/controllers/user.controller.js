@@ -4,7 +4,7 @@ const { userService } = require('../services')
 module.exports = {
   createTest: async (req, res) => {
     try {
-      const response = await userService.create(req.body, 3)
+      const response = await userService.createUser(req.body, 3)
       return res.status(StatusCodes.CREATED).json(response)
     } catch (error) {
       console.error(error)
