@@ -46,7 +46,7 @@ module.exports = {
   },
   update: async (req, res) => {
     try {
-      const response = await userService.update(req.params.id, req.body)
+      const response = await userService.update(req.user.id, req.body)
       return res.status(StatusCodes.OK).json(response)
     } catch (error) {
       console.error(error)
@@ -56,6 +56,17 @@ module.exports = {
             ? StatusCodes.BAD_REQUEST
             : error.status || StatusCodes.INTERNAL_SERVER_ERROR
         )
+        .json(error.message)
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const response = await userService.deleteUser(req.user.id)
+      return res.status(StatusCodes.NO_CONTENT).json(response)
+    } catch (error) {
+      console.error(error)
+      return res
+        .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message)
     }
   }

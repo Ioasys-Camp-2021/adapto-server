@@ -4,7 +4,8 @@ const { messages } = require('../../utils')
 const { refugeesRepository } = require('../../repositories')
 
 module.exports.update = async (id, body) => {
-  const refugee = await refugeesRepository.getById(id)
+  console.log(id)
+  const refugee = await refugeesRepository.get({ userId: id })
 
   if (!refugee) {
     throw Object.assign(new Error(messages.notFound('refugee')), {

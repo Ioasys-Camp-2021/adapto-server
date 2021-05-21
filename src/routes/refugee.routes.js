@@ -1,10 +1,11 @@
 const router = require('express').Router()
 const { refugeeController } = require('../controllers')
+const { isAuthenticated } = require('../middlewares')
 
 router.post('/', refugeeController.create)
-router.get('/', refugeeController.list)
+router.get('/', isAuthenticated, refugeeController.list)
 router.get('/:id', refugeeController.get)
-router.put('/:id', refugeeController.update)
-router.delete('/:id', refugeeController.delete)
+router.put('/', isAuthenticated, refugeeController.update)
+router.delete('/', isAuthenticated, refugeeController.delete)
 
 module.exports.refugee = router

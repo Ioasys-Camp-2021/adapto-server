@@ -46,7 +46,7 @@ module.exports = {
   },
   update: async (req, res) => {
     try {
-      const response = await refugeeService.update(req.params.id, req.body)
+      const response = await refugeeService.update(req.user.id, req.body)
       return res.status(StatusCodes.OK).json(response)
     } catch (error) {
       console.error(error)
@@ -61,8 +61,8 @@ module.exports = {
   },
   delete: async (req, res) => {
     try {
-      const response = await refugeeService.deleteOne(req.params.id)
-      return res.status(StatusCodes.OK).json(response)
+      const response = await refugeeService.deleteOne(req.user.id)
+      return res.status(StatusCodes.NO_CONTENT).json(response)
     } catch (error) {
       console.error(error)
       return res
