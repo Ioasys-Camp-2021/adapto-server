@@ -9,8 +9,7 @@ Role.init(
   {
     sequelize: new Sequelize(config),
     modelName: 'Role',
-    tableName: 'roles',
-    paranoid: true
+    tableName: 'roles'
   }
 )
 

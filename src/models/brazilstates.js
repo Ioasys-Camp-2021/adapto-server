@@ -10,8 +10,7 @@ BrazilState.init(
   {
     sequelize: new Sequelize(config),
     modelName: 'BrazilState',
-    tableName: 'brazil_states',
-    paranoid: true
+    tableName: 'brazil_states'
   }
 )
 
