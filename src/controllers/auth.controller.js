@@ -27,5 +27,16 @@ module.exports = {
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message)
     }
+  },
+  resetPassword: async (req, res) => {
+    try {
+      const response = await authService.resetPass(req.body)
+      return res.status(StatusCodes.NO_CONTENT).json(response)
+    } catch (error) {
+      console.error(error)
+      return res
+        .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
+        .json(error.message)
+    }
   }
 }

@@ -7,5 +7,6 @@ router.post('/logout', isAuthenticated, authController.logout)
 router.get('/', isAuthenticated, (req, res) => {
   return res.json(req.user)
 })
+router.post('/reset-password', authController.resetPassword)
 
 module.exports.auth = router
