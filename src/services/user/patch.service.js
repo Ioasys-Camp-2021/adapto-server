@@ -15,12 +15,12 @@ module.exports.patch = async (token, email, body) => {
   const currentDate = new Date()
 
   if (resetToken.used === true) {
-    throw Object.assign(new Error(messages.notFound('uscu-de-cabrito')), {
-      status: StatusCodes.NOT_FOUND
+    throw Object.assign(new Error(messages.accessUnauthorized), {
+      status: StatusCodes.UNAUTHORIZED
     })
   } else if (resetToken.expiration < currentDate) {
-    throw Object.assign(new Error(messages.notFound('galinha')), {
-      status: StatusCodes.NOT_FOUND
+    throw Object.assign(new Error(messages.tokenExpired), {
+      status: StatusCodes.UNAUTHORIZED
     })
   }
 
@@ -49,8 +49,9 @@ module.exports.patch = async (token, email, body) => {
 
   user.setDataValue('password', validated.password)
   const userUpdated = await usersRepository.update(user)
+
   resetToken.setDataValue('used', true)
-  await resetTokenRepository.save(resetTokenRepository)
+  await resetTokenRepository.update(resetToken)
 
   return {
     firstName: userUpdated.getDataValue('firstName'),

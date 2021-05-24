@@ -29,14 +29,7 @@ module.exports.resetPass = async (body) => {
     }
   }
 
-  await resetTokenRepository.update({
-    used: true
-  },
-  {
-    where: {
-      email: validated.email1
-    }
-  })
+  await resetTokenRepository.destroy(validated.email1)
 
   const token = crypto.randomBytes(64).toString('base64')
 
