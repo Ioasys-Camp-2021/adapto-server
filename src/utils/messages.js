@@ -6,6 +6,7 @@ module.exports.messages = {
   emailUnavailable: 'email-unavailable',
   invalidAuthFormat: 'invalid-authorization-format',
   authMissing: 'missing-authorization-header',
+  tokenExpired: 'token-expired',
   accessUnauthorized: 'access-unauthorized',
   internalError: 'internal-server-error'
 }

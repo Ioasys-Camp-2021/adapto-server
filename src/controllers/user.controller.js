@@ -59,6 +59,21 @@ module.exports = {
         .json(error.message)
     }
   },
+  patch: async (req, res) => {
+    try {
+      const response = await userService.patch(req.query.token, req.query.email, req.body)
+      return res.status(StatusCodes.OK).json(response)
+    } catch (error) {
+      console.error(error)
+      return res
+        .status(
+          error.name === 'ValidationError'
+            ? StatusCodes.BAD_REQUEST
+            : error.status || StatusCodes.INTERNAL_SERVER_ERROR
+        )
+        .json(error.message)
+    }
+  },
   delete: async (req, res) => {
     try {
       const response = await userService.deleteUser(req.user.id)
