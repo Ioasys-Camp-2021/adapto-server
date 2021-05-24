@@ -5,6 +5,7 @@ const Role = require('./role')
 const BrazilState = require('./brazilstates')
 const Refugee = require('./refugee')
 const ResetToken = require('./resettoken')
+const Category = require('./category')
 
 Role.hasMany(User)
 User.hasOne(Role)
@@ -27,5 +28,6 @@ module.exports = {
   Role,
   BrazilState,
   Refugee,
-  ResetToken
+  ResetToken,
+  Category
 }
