@@ -8,12 +8,13 @@ Refugee.init(
       type: DataTypes.INTEGER,
       field: 'user_id'
     },
-    brazilStateId: {
-      type: DataTypes.INTEGER,
-      field: 'brazil_state_id'
-    },
+    title: DataTypes.STRING,
     bio: DataTypes.STRING,
-    phone: DataTypes.STRING,
+    location: DataTypes.STRING,
+    languages: DataTypes.STRING,
+    contact: DataTypes.STRING,
+    job_modality: DataTypes.STRING,
+    work_experiences: DataTypes.STRING,
     website: DataTypes.STRING,
     linkedin: DataTypes.STRING,
     facebook: DataTypes.STRING,

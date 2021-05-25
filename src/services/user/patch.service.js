@@ -54,8 +54,8 @@ module.exports.patch = async (token, email, body) => {
   await resetTokenRepository.update(resetToken)
 
   return {
-    firstName: userUpdated.getDataValue('firstName'),
-    lastName: userUpdated.getDataValue('lastName'),
-    email: userUpdated.getDataValue('email')
+    firstName: userUpdated.firstName,
+    fullName: userUpdated.fullName,
+    email: userUpdated.email
   }
 }

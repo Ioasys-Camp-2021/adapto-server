@@ -18,21 +18,26 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      brazil_state_id: {
-        type: Sequelize.DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'brazil_states',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+      title: {
+        type: Sequelize.STRING
       },
       bio: {
         type: Sequelize.STRING
       },
-      phone: {
+      location: {
+        type: Sequelize.STRING
+      },
+      languages: {
         type: Sequelize.STRING(11)
+      },
+      contact: {
+        type: Sequelize.STRING
+      },
+      job_modality: {
+        type: Sequelize.STRING
+      },
+      work_experiences: {
+        type: Sequelize.STRING(500)
       },
       website: {
         type: Sequelize.STRING

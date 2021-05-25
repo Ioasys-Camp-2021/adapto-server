@@ -13,13 +13,21 @@ module.exports.update = async (id, body) => {
   }
 
   const schema = yup.object().shape({
-    firstName: yup.string(),
-    lastName: yup.string()
+    fullName: yup.string(),
+    email: yup.string().email()
   })
 
   const validated = await schema.validate(body, {
     stripUnknown: true
   })
+
+  const checkEmail = await usersRepository.get({ email: validated.email })
+
+  if (!checkEmail) {
+    throw Object.assign(new Error(messages.emailUnavailable), {
+      status: StatusCodes.CONFLICT
+    })
+  }
 
   Object.keys(validated).forEach((key) => {
     user.setDataValue(key, validated[key])
@@ -31,7 +39,7 @@ module.exports.update = async (id, body) => {
     id: userUpdated.id,
     roleId: userUpdated.roleId,
     firstName: userUpdated.firstName,
-    lastName: userUpdated.lastName,
+    fullName: userUpdated.fullName,
     email: userUpdated.email
   }
 }

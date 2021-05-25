@@ -15,7 +15,7 @@ module.exports.get = async (id) => {
     id: user.id,
     roleId: user.roleId,
     firstName: user.firstName,
-    lastName: user.lastName,
+    fullName: user.fullName,
     email: user.email
   }
 }
