@@ -23,7 +23,7 @@ module.exports.update = async (id, body) => {
 
   const checkEmail = await usersRepository.get({ email: validated.email })
 
-  if (!checkEmail) {
+  if (checkEmail) {
     throw Object.assign(new Error(messages.emailUnavailable), {
       status: StatusCodes.CONFLICT
     })

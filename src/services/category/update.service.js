@@ -1,4 +1,5 @@
 const yup = require('yup')
+const { Op } = require('sequelize')
 const { StatusCodes } = require('http-status-codes')
 const { messages } = require('../../utils')
 const { categoriesRepository } = require('../../repositories')
@@ -19,6 +20,17 @@ module.exports.update = async (id, body) => {
   const validated = await schema.validate(body, {
     stripUnknown: true
   })
+
+  const checkTitle = await categoriesRepository.get({
+    title: { [Op.iLike]: validated.title }
+  })
+
+  if (checkTitle) {
+    throw Object.assign(new Error(messages.alreadyExists('category')), {
+      status: StatusCodes.CONFLICT
+    })
+  }
+
   category.setDataValue('title', validated.title)
 
   const categoryUpdated = await categoriesRepository.update(category)

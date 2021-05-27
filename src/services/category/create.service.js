@@ -1,4 +1,5 @@
 const yup = require('yup')
+const { Op } = require('sequelize')
 const { StatusCodes } = require('http-status-codes')
 const { categoriesRepository } = require('../../repositories')
 const { messages } = require('../../utils')
@@ -12,11 +13,9 @@ module.exports.create = async (body) => {
     stripUnknown: true
   })
 
-  const category = await categoriesRepository.get(
-    {
-      title: validated.title
-    }
-  )
+  const category = await categoriesRepository.get({
+    title: { [Op.iLike]: validated.title }
+  })
 
   if (category) {
     throw Object.assign(new Error(messages.alreadyExists('category')), {
