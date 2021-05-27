@@ -16,6 +16,7 @@ module.exports.login = async (body) => {
   })
 
   const user = await usersRepository.get({ email: validated.email })
+  console.log('AUTH' + user.roleId)
 
   if (!user) {
     throw Object.assign(
@@ -34,8 +35,7 @@ module.exports.login = async (body) => {
   const payload = {
     id: user.id,
     email: user.email,
-    userType: user.userType,
-    isAdmin: user.isAdmin
+    role: user.roleId
   }
 
   const sign = promisify(jwt.sign)

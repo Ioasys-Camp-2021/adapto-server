@@ -11,7 +11,7 @@ User.init(
     },
     fullName: {
       type: DataTypes.STRING,
-      field: 'first_name',
+      field: 'full_name',
       set (value) {
         this.setDataValue('firstName', value.replace(/\b\w/g, l => l.toUpperCase()))
       }

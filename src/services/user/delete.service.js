@@ -13,6 +13,6 @@ module.exports.deleteUser = async (id) => {
 
   const userDeleted = usersRepository.destroy(id)
   if (userDeleted) {
-    return messages.sucess('user-deleted')
+    return 'user-deleted'
   }
 }
