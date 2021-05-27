@@ -39,7 +39,7 @@ module.exports = async (req, res, next) => {
       token,
       id: decoded.id,
       email: decoded.email,
-      roleId: decoded.roleId
+      role: decoded.role
     }
 
     req.user = user

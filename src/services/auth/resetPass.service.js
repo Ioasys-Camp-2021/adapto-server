@@ -24,9 +24,9 @@ module.exports.resetPass = async (body) => {
   const email = await usersRepository.get({ email: validated.email1 })
 
   if (!email) {
-    return {
+    throw Object.assign(new Error(messages.notFound('email')), {
       status: StatusCodes.OK
-    }
+    })
   }
 
   await resetTokenRepository.destroy(validated.email1)

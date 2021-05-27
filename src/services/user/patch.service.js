@@ -4,10 +4,10 @@ const { messages } = require('../../utils')
 const { usersRepository, resetTokenRepository } = require('../../repositories')
 
 module.exports.patch = async (token, email, body) => {
-  const resetToken = await resetTokenRepository.get({ token: token })
+  const resetToken = await resetTokenRepository.get({ token: token, email: email })
 
   if (!resetToken) {
-    throw Object.assign(new Error(messages.notFound('token')), {
+    throw Object.assign(new Error(messages.notFound('request')), {
       status: StatusCodes.NOT_FOUND
     })
   }
@@ -54,8 +54,8 @@ module.exports.patch = async (token, email, body) => {
   await resetTokenRepository.update(resetToken)
 
   return {
-    firstName: userUpdated.getDataValue('firstName'),
-    lastName: userUpdated.getDataValue('lastName'),
-    email: userUpdated.getDataValue('email')
+    firstName: userUpdated.firstName,
+    fullName: userUpdated.fullName,
+    email: userUpdated.email
   }
 }

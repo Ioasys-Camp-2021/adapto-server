@@ -9,24 +9,18 @@ User.init(
       type: DataTypes.INTEGER,
       field: 'role_id'
     },
-    firstName: {
+    fullName: {
       type: DataTypes.STRING,
-      field: 'first_name',
+      field: 'full_name',
       set (value) {
         this.setDataValue('firstName', value.replace(/\b\w/g, l => l.toUpperCase()))
       }
     },
-    lastName: {
-      type: DataTypes.STRING,
-      field: 'last_name',
-      set (value) {
-        this.setDataValue('lastName', value.replace(/\b\w/g, l => l.toUpperCase()))
-      }
-    },
-    fullName: {
+    firstName: {
       type: DataTypes.VIRTUAL,
       get () {
-        return `${this.firstName} ${this.lastName}`
+        const firstName = this.fullName.split(' ')[0]
+        return firstName
       }
     },
     email: DataTypes.STRING,

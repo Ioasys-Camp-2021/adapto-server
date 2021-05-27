@@ -19,9 +19,13 @@ module.exports.update = async (id, body) => {
   }
 
   const schema = yup.object().shape({
-    brazilStateId: yup.number(),
+    title: yup.string(),
     bio: yup.string(),
-    phone: yup.string().max(11),
+    location: yup.string(),
+    languages: yup.string(),
+    contact: yup.string().email(),
+    job_modality: yup.string(),
+    work_experiences: yup.string().max(500),
     website: yup.string().matches(regexUrl.regex, regexUrl.msg),
     linkedin: yup.string().matches(regexUrl.regex, regexUrl.msg),
     facebook: yup.string().matches(regexUrl.regex, regexUrl.msg),
@@ -41,9 +45,13 @@ module.exports.update = async (id, body) => {
   return {
     id: refugeeUpdated.id,
     userId: refugeeUpdated.userId,
-    brazilStateId: refugeeUpdated.brazilStateId,
+    title: refugeeUpdated.bio,
     bio: refugeeUpdated.bio,
-    phone: refugeeUpdated.phone,
+    location: refugeeUpdated.location,
+    languages: refugeeUpdated.languages,
+    contact: refugeeUpdated.contact,
+    job_modality: refugeeUpdated.job_modality,
+    work_experiences: refugeeUpdated.work_experiences,
     website: refugeeUpdated.website,
     linkedin: refugeeUpdated.linkedin,
     facebook: refugeeUpdated.facebook,

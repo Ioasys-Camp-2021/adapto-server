@@ -5,8 +5,7 @@ const { messages } = require('../../utils')
 
 module.exports.createUser = async (body, role) => {
   const schema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
+    fullName: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().required()
   })
@@ -37,7 +36,7 @@ module.exports.createUser = async (body, role) => {
     id: userCreated.id,
     roleId: userCreated.roleId,
     firstName: userCreated.firstName,
-    lastName: userCreated.lastName,
+    fullName: userCreated.fullName,
     email: userCreated.email
   }
 }
