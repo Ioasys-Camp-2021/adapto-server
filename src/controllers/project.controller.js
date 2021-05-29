@@ -53,5 +53,21 @@ module.exports = {
         )
         .json(error.message)
     }
+  },
+  delete: async (req, res) => {
+    try {
+      if (req.session.role !== 1) {
+        throw Object.assign(new Error(messages.accessUnauthorized), {
+          status: StatusCodes.FORBIDDEN
+        })
+      }
+      const response = await projectService.deleteOne(req.user.id, req.params.id)
+      return res.status(StatusCodes.NO_CONTENT).json(response)
+    } catch (error) {
+      console.error(error)
+      return res
+        .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
+        .json(error.message)
+    }
   }
 }

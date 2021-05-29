@@ -3,9 +3,9 @@ const { StatusCodes } = require('http-status-codes')
 const { refugeesRepository, projectsRepository, categoriesRepository } = require('../../repositories')
 const { messages } = require('../../utils')
 
-module.exports.update = async (idUser, id, body) => {
-  const refugee = await refugeesRepository.get({ userId: idUser })
-  const project = await projectsRepository.getById(id)
+module.exports.update = async (userId, id, body) => {
+  const refugee = await refugeesRepository.get({ userId: userId })
+  const project = await projectsRepository.get({ id: id, refugeeId: refugee.id })
 
   if (!refugee || !project) {
     throw Object.assign(new Error(messages.notFound('user-or-project')), {
