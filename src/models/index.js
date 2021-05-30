@@ -6,12 +6,15 @@ const Refugee = require('./refugee')
 const ResetToken = require('./resettoken')
 const Category = require('./category')
 const Project = require('./project')
+const Enterprise = require('./enterprise')
 
 Role.hasMany(User)
 User.hasOne(Role)
 
 User.hasOne(Refugee)
+User.hasOne(Enterprise)
 Refugee.belongsTo(User)
+Enterprise.belongsTo(User)
 
 User.hasMany(Project)
 Refugee.hasMany(Project)
@@ -33,5 +36,6 @@ module.exports = {
   Refugee,
   ResetToken,
   Category,
-  Project
+  Project,
+  Enterprise
 }
