@@ -1,6 +1,6 @@
 const yup = require('yup')
 const { createUser } = require('../user/create.service')
-const { refugeesRepository } = require('../../repositories')
+const { enterprisesRepository } = require('../../repositories')
 const { User } = require('../../models')
 const { StatusCodes } = require('http-status-codes')
 const { messages } = require('../../utils')
@@ -12,46 +12,51 @@ module.exports.create = async (body) => {
   }
 
   const schema = yup.object().shape({
-    title: yup.string(),
+    cnpj: yup.string().max(14).min(14).required(),
     bio: yup.string(),
-    location: yup.string(),
-    languages: yup.string(),
     contact: yup.string().email(),
-    job_modality: yup.string(),
-    work_experiences: yup.string().max(500),
-    website: yup.string().matches(regexUrl.regex, regexUrl.msg),
-    linkedin: yup.string().matches(regexUrl.regex, regexUrl.msg),
-    facebook: yup.string().matches(regexUrl.regex, regexUrl.msg),
-    instagram: yup.string().matches(regexUrl.regex, regexUrl.msg)
+    website: yup.string().matches(regexUrl.regex, regexUrl.msg)
   })
 
   const validated = await schema.validate(body, {
     stripUnknown: true
   })
 
-  const user = await createUser(body, 1)
+  const cnpj = await enterprisesRepository.get(
+    {
+      cnpj: validated.cnpj
+    },
+    { paranoid: false }
+  )
 
-  const refugee = await refugeesRepository.get(
+  if (cnpj) {
+    throw Object.assign(new Error(messages.alreadyExists('enterprise')), {
+      status: StatusCodes.CONFLICT
+    })
+  }
+
+  const user = await createUser(body, 2)
+  const enterprise = await enterprisesRepository.get(
     {
       userId: user.id
     },
     { paranoid: false }
   )
 
-  if (refugee) {
+  if (enterprise) {
     throw Object.assign(new Error(messages.alreadyExists('user')), {
       status: StatusCodes.CONFLICT
     })
   }
 
-  const refugeeCreated = await refugeesRepository.create({
+  const enterpriseCreated = await enterprisesRepository.create({
     userId: user.id,
     ...validated
   })
 
-  return await refugeesRepository.getAll({
+  return await enterprisesRepository.getAll({
     where: {
-      id: refugeeCreated.id
+      id: enterpriseCreated.id
     },
     attributes: { exclude: ['deletedAt', 'UserId'] },
     include: [{
