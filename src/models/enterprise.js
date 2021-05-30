@@ -10,7 +10,7 @@ Enterprise.init(
     },
     cnpj: DataTypes.STRING,
     bio: DataTypes.STRING,
-    contato: DataTypes.STRING,
+    contact: DataTypes.STRING,
     website: DataTypes.STRING
   },
   {

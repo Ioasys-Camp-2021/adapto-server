@@ -8,14 +8,25 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      user_id: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
       cnpj: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       bio: {
         type: Sequelize.STRING
       },
-      contato: {
+      contact: {
         type: Sequelize.STRING
       },
       website: {
@@ -29,7 +40,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      deleted_At: {
+      deleted_at: {
         allowNull: true,
         type: Sequelize.DATE
       }
