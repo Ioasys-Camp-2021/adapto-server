@@ -9,10 +9,15 @@ const Project = require('./project')
 
 Role.hasMany(User)
 User.hasOne(Role)
+
+User.hasOne(Refugee)
 Refugee.belongsTo(User)
 
+User.hasMany(Project)
 Refugee.hasMany(Project)
+Project.belongsTo(User)
 Project.belongsTo(Category)
+Project.belongsTo(Refugee)
 
 const sequelize = new Sequelize(
   config.database,

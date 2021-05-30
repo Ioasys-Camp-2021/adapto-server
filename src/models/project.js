@@ -4,6 +4,10 @@ const config = require('../config/database/sequelize')
 class Project extends Model {}
 Project.init(
   {
+    userId: {
+      type: DataTypes.INTEGER,
+      field: 'user_id'
+    },
     refugeeId: {
       type: DataTypes.INTEGER,
       field: 'refugee_id'
