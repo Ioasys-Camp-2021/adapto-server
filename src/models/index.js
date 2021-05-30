@@ -7,6 +7,7 @@ const ResetToken = require('./resettoken')
 const Category = require('./category')
 const Project = require('./project')
 const Enterprise = require('./enterprise')
+const Job = require('./job')
 
 Role.hasMany(User)
 User.hasOne(Role)
@@ -21,6 +22,12 @@ Refugee.hasMany(Project)
 Project.belongsTo(User)
 Project.belongsTo(Category)
 Project.belongsTo(Refugee)
+
+User.hasMany(Job)
+Enterprise.hasMany(Job)
+Job.belongsTo(User)
+Job.belongsTo(Category)
+Job.belongsTo(Enterprise)
 
 const sequelize = new Sequelize(
   config.database,
@@ -37,5 +44,6 @@ module.exports = {
   ResetToken,
   Category,
   Project,
-  Enterprise
+  Enterprise,
+  Job
 }

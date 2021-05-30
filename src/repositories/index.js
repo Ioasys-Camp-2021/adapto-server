@@ -4,6 +4,7 @@ const resetTokenRepository = require('./resettoken.repository')
 const categoriesRepository = require('./category.repository')
 const projectsRepository = require('./project.repository')
 const enterprisesRepository = require('./enterprise.repository')
+const jobsRepository = require('./job.repository')
 
 module.exports = {
   usersRepository,
@@ -11,5 +12,6 @@ module.exports = {
   resetTokenRepository,
   categoriesRepository,
   projectsRepository,
-  enterprisesRepository
+  enterprisesRepository,
+  jobsRepository
 }

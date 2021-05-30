@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('enterprises', {
+    await queryInterface.createTable('jobs', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,19 +18,43 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      cnpj: {
+      enterprise_id: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
+        references: {
+          model: 'enterprises',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      category_id: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'categories',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      bio: {
+      description: {
         type: Sequelize.STRING(500)
       },
-      contact: {
+      job_modality: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      website: {
+      location: {
         type: Sequelize.STRING
+      },
+      is_remote: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
       },
       created_at: {
         allowNull: false,
@@ -39,14 +63,10 @@ module.exports = {
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      deleted_at: {
-        allowNull: true,
-        type: Sequelize.DATE
       }
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('enterprises')
+    await queryInterface.dropTable('jobs')
   }
 }
