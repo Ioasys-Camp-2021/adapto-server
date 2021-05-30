@@ -30,14 +30,9 @@ module.exports.create = async (id, body) => {
     })
   }
 
-  const projectCreated = await projectsRepository.create({
+  return await projectsRepository.create({
+    userId: id,
     refugeeId: refugee.id,
     ...validated
   })
-  return {
-    id: projectCreated.id,
-    title: projectCreated.title,
-    category: category.title,
-    description: projectCreated.description
-  }
 }
