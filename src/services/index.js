@@ -4,6 +4,7 @@ const refugeeService = require('./refugee')
 const categoryService = require('./category')
 const projectService = require('./project')
 const enterpriseService = require('./enterprise')
+const jobService = require('./job')
 
 module.exports = {
   authService,
@@ -11,5 +12,6 @@ module.exports = {
   refugeeService,
   categoryService,
   projectService,
-  enterpriseService
+  enterpriseService,
+  jobService
 }

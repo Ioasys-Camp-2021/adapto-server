@@ -45,6 +45,8 @@ module.exports.login = async (body) => {
   await usersRepository.update(user)
 
   return {
+    fullName: user.fullName,
+    role: user.roleId,
     email: user.email,
     token
   }
