@@ -5,7 +5,7 @@ module.exports = {
   login: async (req, res) => {
     try {
       const response = await authService.login(req.body)
-      return res.status(StatusCodes.OK).json(response)
+      return res.status(StatusCodes.OK).json(response).setHeader('Authorization', response.token)
     } catch (error) {
       console.error(error)
       return res
