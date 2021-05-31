@@ -13,7 +13,7 @@ module.exports.create = async (id, body) => {
   }
 
   const schema = yup.object().shape({
-    category: yup.string().required(),
+    categoryId: yup.string().required(),
     title: yup.string().required(),
     description: yup.string(),
     jobModality: yup.string().required(),
@@ -25,7 +25,7 @@ module.exports.create = async (id, body) => {
     stripUnknown: true
   })
 
-  const category = await categoriesRepository.get({ title: validated.category })
+  const category = await categoriesRepository.getById(validated.categoryId)
 
   if (!category) {
     throw Object.assign(new Error(messages.notFound('category')), {
@@ -35,7 +35,6 @@ module.exports.create = async (id, body) => {
 
   return await jobsRepository.create({
     userId: id,
-    categoryId: category.id,
     enterpriseId: enterprise.id,
     ...validated
   })
