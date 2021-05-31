@@ -6,7 +6,7 @@ const { messages } = require('../../utils')
 module.exports.get = async (id) => {
   const enterprise = await enterprisesRepository.getAll({
     where: {
-      id: id
+      userId: id
     },
     attributes: { exclude: ['deletedAt', 'UserId'] },
     include: [{

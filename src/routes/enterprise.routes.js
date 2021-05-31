@@ -4,7 +4,7 @@ const { isAuthenticated } = require('../middlewares')
 
 router.post('/', enterpriseController.create)
 router.get('/', isAuthenticated, enterpriseController.list)
-router.get('/:id', enterpriseController.get)
+router.get('/:userId', enterpriseController.get)
 router.put('/', isAuthenticated, enterpriseController.update)
 router.delete('/', isAuthenticated, enterpriseController.delete)
 

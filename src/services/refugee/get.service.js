@@ -6,7 +6,7 @@ const { messages } = require('../../utils')
 module.exports.get = async (id) => {
   const refugee = await refugeesRepository.getAll({
     where: {
-      id: id
+      userId: id
     },
     attributes: { exclude: ['deletedAt', 'UserId'] },
     include: [{
