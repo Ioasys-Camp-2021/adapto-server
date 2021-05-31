@@ -10,7 +10,7 @@ Job.init(
     },
     enterpriseId: {
       type: DataTypes.INTEGER,
-      field: 'refugee_id'
+      field: 'enterprise_id'
     },
     categoryId: {
       type: DataTypes.INTEGER,

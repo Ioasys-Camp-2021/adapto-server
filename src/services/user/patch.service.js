@@ -8,7 +8,7 @@ module.exports.patch = async (token, email, body) => {
 
   if (!resetToken) {
     throw Object.assign(new Error(messages.notFound('request')), {
-      status: StatusCodes.NOT_FOUND
+      status: StatusCodes.UNAUTHORIZED
     })
   }
 

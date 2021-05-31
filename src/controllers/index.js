@@ -4,6 +4,7 @@ const refugeeController = require('./refugee.controller')
 const categoryController = require('./category.controller')
 const projectController = require('./project.controller')
 const enterpriseController = require('./enterprise.controller')
+const jobController = require('./job.controller')
 
 module.exports = {
   authController,
@@ -11,5 +12,6 @@ module.exports = {
   refugeeController,
   categoryController,
   projectController,
-  enterpriseController
+  enterpriseController,
+  jobController
 }

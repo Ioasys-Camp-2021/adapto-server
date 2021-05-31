@@ -4,6 +4,7 @@ const { refugee } = require('./refugee.routes')
 const { category } = require('./category.routes')
 const { project } = require('./project.routes')
 const { enterprise } = require('./enterprise.routes')
+const { job } = require('./job.routes')
 
 module.exports = {
   auth,
@@ -11,5 +12,6 @@ module.exports = {
   refugee,
   category,
   project,
-  enterprise
+  enterprise,
+  job
 }
