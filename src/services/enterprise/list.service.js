@@ -4,7 +4,6 @@ const { User } = require('../../models')
 
 module.exports.list = async (query) => {
   const search = query.search ? query.search : 0
-  const page = query.page ? query.page : 0
 
   const { count, rows } = await enterprisesRepository.list({
     include: [
@@ -19,9 +18,7 @@ module.exports.list = async (query) => {
       }
     ],
     attributes: { exclude: ['deletedAt', 'UserId'] },
-    order: [['createdAt', 'DESC']],
-    limit: 7,
-    offset: page
+    order: [['createdAt', 'DESC']]
   })
 
   return {

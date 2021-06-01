@@ -5,7 +5,6 @@ const { Category, User } = require('../../models')
 module.exports.list = async (query) => {
   const search = query.search ? query.search : ''
   const category = query.category ? query.category : ''
-  const page = query.page ? query.page * 7 : 0
 
   const { count, rows } = await projectsRepository.list({
     include: [{
@@ -36,9 +35,7 @@ module.exports.list = async (query) => {
         }
       ]
     },
-    order: [['createdAt', 'DESC']],
-    limit: 7,
-    offset: page
+    order: [['createdAt', 'DESC']]
   })
 
   return {
