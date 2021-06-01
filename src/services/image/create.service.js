@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
-const { usersRepository, imagesRepository } = require('../../repositories')
+const { usersRepository } = require('../../repositories')
 const { messages } = require('../../utils')
 
 module.exports.create = async (id, file) => {
