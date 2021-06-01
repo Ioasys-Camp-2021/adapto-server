@@ -31,12 +31,14 @@ module.exports.create = async (id, body) => {
     })
   }
 
-  const image = await imagesRepository.get({ id: validated.imageId, userId: id })
+  if (validated.imageId) {
+    const image = await imagesRepository.get({ id: validated.imageId, userId: id })
 
-  if (!image) {
-    throw Object.assign(new Error(messages.notFound('image')), {
-      status: StatusCodes.NOT_FOUND
-    })
+    if (!image) {
+      throw Object.assign(new Error(messages.notFound('image')), {
+        status: StatusCodes.NOT_FOUND
+      })
+    }
   }
 
   return await projectsRepository.create({

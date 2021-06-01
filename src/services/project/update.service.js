@@ -34,12 +34,14 @@ module.exports.update = async (userId, id, body) => {
     }
   }
 
-  const image = await imagesRepository.get({ id: validated.imageId, userId: id })
+  if (validated.imageId) {
+    const image = await imagesRepository.get({ id: validated.imageId, userId: id })
 
-  if (!image) {
-    throw Object.assign(new Error(messages.notFound('image')), {
-      status: StatusCodes.NOT_FOUND
-    })
+    if (!image) {
+      throw Object.assign(new Error(messages.notFound('image')), {
+        status: StatusCodes.NOT_FOUND
+      })
+    }
   }
 
   Object.keys(validated).forEach((key) => {

@@ -22,22 +22,25 @@ module.exports.update = async (id, body) => {
     stripUnknown: true
   })
 
-  const checkEmail = await usersRepository.get({ email: validated.email })
+  if (validated.email) {
+    const checkEmail = await usersRepository.get({ email: validated.email })
 
-  if (checkEmail) {
-    throw Object.assign(new Error(messages.emailUnavailable), {
-      status: StatusCodes.CONFLICT
-    })
+    if (checkEmail) {
+      throw Object.assign(new Error(messages.emailUnavailable), {
+        status: StatusCodes.CONFLICT
+      })
+    }
   }
 
-  const image = await imagesRepository.get({ id: validated.imageId, userId: id })
+  if (validated.imageId) {
+    const image = await imagesRepository.get({ id: validated.imageId, userId: id })
 
-  if (!image) {
-    throw Object.assign(new Error(messages.notFound('image')), {
-      status: StatusCodes.NOT_FOUND
-    })
+    if (!image) {
+      throw Object.assign(new Error(messages.notFound('image')), {
+        status: StatusCodes.NOT_FOUND
+      })
+    }
   }
-
   Object.keys(validated).forEach((key) => {
     user.setDataValue(key, validated[key])
   })
