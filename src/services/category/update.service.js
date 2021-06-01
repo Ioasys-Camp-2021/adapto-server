@@ -14,6 +14,7 @@ module.exports.update = async (id, body) => {
   }
 
   const schema = yup.object().shape({
+    imageId: yup.number(),
     title: yup.string()
   })
 
@@ -37,6 +38,7 @@ module.exports.update = async (id, body) => {
 
   return {
     id: categoryUpdated.id,
+    imageId: categoryUpdated.imageId,
     title: categoryUpdated.title
   }
 }

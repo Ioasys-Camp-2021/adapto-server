@@ -1,6 +1,6 @@
 const yup = require('yup')
 const { StatusCodes } = require('http-status-codes')
-const { refugeesRepository, projectsRepository, categoriesRepository } = require('../../repositories')
+const { refugeesRepository, projectsRepository, categoriesRepository, imagesRepository } = require('../../repositories')
 const { messages } = require('../../utils')
 
 module.exports.update = async (userId, id, body) => {
@@ -14,7 +14,8 @@ module.exports.update = async (userId, id, body) => {
   }
 
   const schema = yup.object().shape({
-    categoryId: yup.string(),
+    imageId: yup.number(),
+    categoryId: yup.number(),
     title: yup.string(),
     description: yup.string()
   })
@@ -33,6 +34,14 @@ module.exports.update = async (userId, id, body) => {
     }
   }
 
+  const image = await imagesRepository.get({ id: validated.imageId, userId: id })
+
+  if (!image) {
+    throw Object.assign(new Error(messages.notFound('image')), {
+      status: StatusCodes.NOT_FOUND
+    })
+  }
+
   Object.keys(validated).forEach((key) => {
     project.setDataValue(key, validated[key])
   })
@@ -41,6 +50,7 @@ module.exports.update = async (userId, id, body) => {
 
   return {
     refugeeId: refugee.id,
+    imageId: projectUpdated.imageId,
     id: projectUpdated.id,
     title: projectUpdated.title,
     categoryId: projectUpdated.categoryId,

@@ -5,6 +5,7 @@ const { category } = require('./category.routes')
 const { project } = require('./project.routes')
 const { enterprise } = require('./enterprise.routes')
 const { job } = require('./job.routes')
+const { file } = require('./file.routes')
 
 module.exports = {
   auth,
@@ -13,5 +14,6 @@ module.exports = {
   category,
   project,
   enterprise,
-  job
+  job,
+  file
 }
