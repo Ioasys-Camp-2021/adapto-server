@@ -4,6 +4,10 @@ const config = require('../config/database/sequelize')
 class Category extends Model {}
 Category.init(
   {
+    imageId: {
+      type: DataTypes.INTEGER,
+      field: 'image_id'
+    },
     title: DataTypes.STRING
   },
   {

@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
-const { usersRepository } = require('../../repositories')
+const { imagesRepository, usersRepository } = require('../../repositories')
 const { messages } = require('../../utils')
 
 module.exports.create = async (id, file) => {
@@ -10,8 +10,14 @@ module.exports.create = async (id, file) => {
       status: StatusCodes.NOT_FOUND
     })
   }
-  const { originalname: name, size, key, location: url = '' } = file
-  console.log(name, size, key, url)
 
-  return 'teste'
+  const { originalname: name, size, key, location: url = '' } = file
+
+  return await imagesRepository.create({
+    userId: user.id,
+    name: name,
+    size: size,
+    key: key,
+    url: url
+  })
 }

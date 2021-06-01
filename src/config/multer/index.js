@@ -3,8 +3,10 @@ const path = require('path')
 const crypto = require('crypto')
 const aws = require('aws-sdk')
 const multerS3 = require('multer-s3')
+const { messages } = require('../../utils')
+const { StatusCodes } = require('http-status-codes')
 
-const MAX_SIZE_THREE_MEGABYTES = 3 * 1024 * 1024
+const MAX_SIZE_THREE_MEGABYTES = 4 * 1024 * 1024
 
 const storageTypes = {
   local: multer.diskStorage({
@@ -55,7 +57,9 @@ module.exports = {
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true)
     } else {
-      cb(new Error('Invalid file type.'))
+      cb(Object.assign(new Error(messages.alreadyExists('category')), {
+        status: StatusCodes.CONFLICT
+      }))
     }
   }
 }

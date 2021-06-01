@@ -5,6 +5,10 @@ const { encryptor } = require('../utils')
 class User extends Model {}
 User.init(
   {
+    imageId: {
+      type: DataTypes.INTEGER,
+      field: 'image_id'
+    },
     roleId: {
       type: DataTypes.INTEGER,
       field: 'role_id'

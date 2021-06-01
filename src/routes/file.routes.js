@@ -4,11 +4,9 @@ const multerConfig = require('../config/multer')
 const { imageController } = require('../controllers')
 const { isAuthenticated } = require('../middlewares')
 
+router.get('/', imageController.list)
 router.get('/:id', imageController.get)
-router.post('/', multer(multerConfig).single('file'), (req, res) => {
-  console.log(req.file)
-  return res.json('aa')
-})
+router.post('/', isAuthenticated, multer(multerConfig).single('file'), imageController.create)
 router.delete('/:id', isAuthenticated, imageController.delete)
 
 module.exports.file = router

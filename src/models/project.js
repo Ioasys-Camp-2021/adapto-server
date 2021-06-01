@@ -16,6 +16,10 @@ Project.init(
       type: DataTypes.INTEGER,
       field: 'category_id'
     },
+    imageId: {
+      type: DataTypes.INTEGER,
+      field: 'image_id'
+    },
     title: DataTypes.STRING,
     description: DataTypes.STRING(500)
   },
