@@ -3,11 +3,8 @@ const { enterprisesRepository } = require('../../repositories')
 const { User } = require('../../models')
 
 module.exports.list = async (query) => {
-  let search = ''
-
-  if (query.search) {
-    search = query.search
-  }
+  const search = query.search ? query.search : 0
+  const page = query.page ? query.page : 0
 
   const { count, rows } = await enterprisesRepository.list({
     include: [
@@ -23,8 +20,8 @@ module.exports.list = async (query) => {
     ],
     attributes: { exclude: ['deletedAt', 'UserId'] },
     order: [['createdAt', 'DESC']],
-    limit: 5,
-    offset: 0
+    limit: 7,
+    offset: page
   })
 
   return {

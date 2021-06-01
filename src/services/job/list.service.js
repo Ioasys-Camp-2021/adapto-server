@@ -5,6 +5,7 @@ const { Category, User, Enterprise } = require('../../models')
 module.exports.list = async (query) => {
   const search = query.search ? query.search : ''
   const category = query.category ? query.category : ''
+  const page = query.page ? query.page * 7 : 0
 
   const { count, rows } = await jobsRepository.list({
     include: [{
@@ -40,8 +41,8 @@ module.exports.list = async (query) => {
       ]
     },
     order: [['createdAt', 'DESC']],
-    limit: 5,
-    offset: 0
+    limit: 7,
+    offset: page
   })
 
   return {
