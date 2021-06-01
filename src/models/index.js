@@ -8,6 +8,7 @@ const Category = require('./category')
 const Project = require('./project')
 const Enterprise = require('./enterprise')
 const Job = require('./job')
+const Image = require('./image')
 
 Role.hasMany(User)
 User.hasOne(Role)
@@ -45,5 +46,6 @@ module.exports = {
   Category,
   Project,
   Enterprise,
-  Job
+  Job,
+  Image
 }
