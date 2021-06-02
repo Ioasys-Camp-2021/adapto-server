@@ -3,7 +3,7 @@ const { enterprisesRepository } = require('../../repositories')
 const { User } = require('../../models')
 
 module.exports.list = async (query) => {
-  const search = query.search ? query.search : 0
+  const search = query.search ? query.search : ''
 
   const { count, rows } = await enterprisesRepository.list({
     include: [
