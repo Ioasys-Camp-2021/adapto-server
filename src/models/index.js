@@ -30,6 +30,8 @@ Job.belongsTo(User)
 Job.belongsTo(Category)
 Job.belongsTo(Enterprise)
 
+Image.belongsTo(User)
+
 const sequelize = new Sequelize(
   config.database,
   config.username,
