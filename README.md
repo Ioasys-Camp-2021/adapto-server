@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="adapto" title="adapto" src=".github/logo.png" width="140px" />
+    <img alt="adapto" title="adapto" src="https://raw.githubusercontent.com/Ioasys-Camp-2021/adapto-web/develop/.github/logo.png" width="140px" />
 </h1>
 
 <h4 align="center">
