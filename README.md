@@ -15,11 +15,11 @@
 
 <br />
 
-## A aplicação
+## Aplicação
 
 A aplicação foi hospedada no [Heroku](https://www.heroku.com) e pode ser acessada clicando [aqui](https://adapto-api.herokuapp.com/).
 
-## O projeto
+## Projeto
 
 Adapto e Incluso é uma iniciativa que visa inserir refugiados no mercado de trabalho. Isso seria através do contato entre refugiados e as empresas, dessa forma, permite o primeiro grupo divulgue seu portfólio, trabalhos e experiências; e o segundo grupo divulgue a empresa e as vagas que estão em aberto, visando conectar diretamente com os refugiados cadastrados na plataforma.
 
