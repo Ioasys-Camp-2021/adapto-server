@@ -16,7 +16,6 @@ module.exports.login = async (body) => {
   })
 
   const user = await usersRepository.get({ email: validated.email })
-  console.log('AUTH' + user.roleId)
 
   if (!user) {
     throw Object.assign(
